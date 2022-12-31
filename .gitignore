@@ -1,0 +1,6 @@
+/backup
+/document
+/group-meeting
+/paper
+._*
+*.pdf
