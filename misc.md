@@ -32,8 +32,11 @@ k8s 部署过程中可能遇到的问题：
 - 部署 openwhisk 需要用到 npm，可以通过 `kubectl exec <pod-name> -- npm config set registry https://registry.npmmirror.com` 进行换源，查看 npm 的镜像源 `kubectl exec <pod-name> -- npm config get registry`
 - openwhisk 安装包的时候由于 npm 版本过低，需要将 `openwhisk/ow-utils:1.0` 更换成 `openwhisk/ow-utils:c5970a6`
 - 部署 wasmedge 若不使用超级用户权限安装到系统目录，则需要将库文件添加到加载路径。在 github 中有相应 [issue](https://github.com/containers/crun/issues/1046) 的描述。
-- 部署 quark 时如果使用的是 proxmox 需要开启嵌套虚拟化的支持 ([ref](https://zhuanlan.zhihu.com/p/593472919))
-- proxmox 虚拟机的扩容：[逻辑卷组的操作](https://einverne.github.io/post/2020/11/extend-proxmox-system-partition-and-pve-file-system.html)、[已有分区的扩展](https://cloud.tencent.com/developer/beta/article/1671893)
+
+kubeedge 部署遇到的问题：
+
+- `DeadlineExceeded desc = context deadline exceeded` 需要拉取 pause 镜像
+- k8s 暴露的端口范围有限，如果需要暴露更多端口需要对 k8s 进行一定的配置 ([ref](https://blog.csdn.net/zhangjunli/article/details/122507879))
 
 冷启动机制：
 
@@ -49,3 +52,8 @@ technique stack:
 - helm: package management of k8s
 - kubernetes: production-grade container orchestration
 - kind: kubernetes in docker, build a standalone k8s cluster
+
+Ingtress 的简单介绍：
+
+- 用于 k8s 集群外客户端请求路由到集群内部的服务
+- 两个组成部份：Ingress 策略定义、Ingress Controller 具体转发服务
