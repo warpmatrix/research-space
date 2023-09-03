@@ -64,6 +64,14 @@ wasmedge 在 docker 中的实现 from [wasmedge doc](https://wasmedge.org/docs/d
 
 > However, this approach still requires starting up a Linux container. The containerized Linux OS, however slim, still takes 80% of the total image size. There is still a lot of room for optimization. The performance and security of this approach would not be as great as running WebAssembly applications directly in crun or in a containerd shim.
 
+GPT 大模型背后的机理：
+
+- LLM 是一个 seq2seq 的模型，GPT 的输入本质上是 字典大小(one-hot vector) x 句子长度 组成的二维矩阵
+  - 实际使用到的编码方式：Byte Pair Encoding (BPE)
+- 对上述稀疏矩阵可以进一步进行 embedding 方便进一步表达语义信息完成去稀疏化
+- 同时为了引入单词的位置信息，gpt 还会引入位置 embedding。随后经过 encoding、decoding、全连接层，输出模型的结果
+- GPT (Generative Pre-Training Transformer) 本质上就是一个 transformer 大模型，[GPT3 的工作机制](https://dugas.ch/artificial_curiosity/GPT_architecture.html)约等于 [transformer 的工作机制](https://zhuanlan.zhihu.com/p/338817680)
+
 后续投稿可以考虑的方向：
 
 - mobisys poster
