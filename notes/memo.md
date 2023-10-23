@@ -8,6 +8,7 @@
 - compilance n. 遵守
 - relinquish v. 放弃
 - therein adv. 在其中
+- leading-edge adj. 领先的
 
 ## Phrase
 
